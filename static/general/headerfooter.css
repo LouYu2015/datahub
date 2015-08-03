@@ -1,0 +1,31 @@
+/* 页眉和页脚的样式 */
+
+div.content
+{
+	float: left;
+}
+
+div.header
+{
+	width: 100%;
+	float: left;
+	padding: 20px;
+	
+	border-bottom: 1px solid gray;
+}
+
+div.buttons
+{
+	width: auto;
+	display: inline-block;
+}
+
+div.footer
+{
+	width: 100%;
+	clear: both;
+	
+	border-top: 1px solid gray;
+	
+	text-align: center;
+}
