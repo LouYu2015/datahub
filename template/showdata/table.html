@@ -1,32 +1,31 @@
-<!-- 显示表格 -->
+<!-- Show a table -->
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>{{ title }}</title>
-		<link rel = "stylesheet" type = "text/css" href = "/static/general/headerfooter.css/" />
-	</head>
+{% extends "showdata/basic.html" %}
 
-	<body>
-		<div class = "header">
-			<div class = "buttons">
-				<input type = "button" value = "测试按钮"/>
-			</div>
-			测试用的顶栏
-		</div>
-		<div class = "content">
-			<p>测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />
-			测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />
-			测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />
-			测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />
-			测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />
-			测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />
-			测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />
-			测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />
-			测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />
-			测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />测试用的内容<br />
-			</p>
-		</div>
-		{% include "general/footer.html" %}
-	</body>
-</html>
+{% block buttons %}
+	<input type = "button" value = "删除" />
+{% endblock %}
+
+{% block header %}
+	{{ path }}
+{% endblock %}
+
+{% block content %}
+	<div>
+		<table>
+			<tr>
+			{% for element in table_headings %}
+				<th>{{ element }}<th>
+			{% endfor %}
+			</tr>
+			{% for row in content %}
+				<tr>
+				{% for element in row %}
+					<td>{{ element }}</td>
+				{% endfor %}
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+	{% include "general/pagination.html" %}
+{% endblock %}

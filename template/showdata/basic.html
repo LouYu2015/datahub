@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{{ title }}</title>
+		<link rel = "stylesheet" type = "text/css" href = "/static/general/headerfooter.css/" />
+		{% block head %}{% endblock %}
+	</head>
+
+	<body>
+		<div class = "header">
+			<div class = "buttons">
+				{% block buttons %}{% endblock %}
+			</div>
+			<span>
+				{% block header %}{% endblock %}
+			</span>
+		</div>
+		<div class = "content">
+			{% block content %}{% endblock %}
+		</div>
+		{% include "general/footer.html" %}
+	</body>
+</html>
