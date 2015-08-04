@@ -1,0 +1,45 @@
+div.pagenav
+{
+	width: auto;
+	margin: 20px;
+	border: 1px solid Blue;
+	border-radius: 4px;
+	
+	background-color: SkyBlue;
+	box-shadow: 3px 3px 3px gray;
+}
+
+div.pagenav li
+{
+	display: inline;
+	
+	margin: 0px;
+	padding: 0px;
+}
+
+div.pagenav span.disabled
+{
+	color: gray;
+}
+
+div.pagenav span.current_page
+{
+	font-weight: bold;
+}
+
+div.pagenav a
+{
+	padding: 5px;
+	margin: 1px;
+	text-decoration: none;
+}
+
+div.pagenav a:link, div.pagenav a:visited
+{
+	color: white;
+}
+
+div.pagenav a:hover, div.pagenav a:active
+{
+	color: blue;
+}

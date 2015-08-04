@@ -1,0 +1,14 @@
+table.content
+{
+	border-collapse:collapse;
+	margin: 20px;
+	
+	box-shadow: 3px 3px 3px gray;
+}
+
+table.content th, table.content td
+{
+	border: 1px solid gray;
+	
+	padding: 5px;
+}

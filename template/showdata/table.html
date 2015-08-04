@@ -2,6 +2,11 @@
 
 {% extends "showdata/basic.html" %}
 
+{% block head %}
+<link rel = "stylesheet" type = "text/css" href = "/static/general/paginator.css/" />
+<link rel = "stylesheet" type = "text/css" href = "/static/showdata/table.css/" />
+{% endblock %}
+
 {% block buttons %}
 	<input type = "button" value = "删除" />
 {% endblock %}
@@ -11,11 +16,12 @@
 {% endblock %}
 
 {% block content %}
+	{% include "general/pagination.html" %}
 	<div>
-		<table>
+		<table class = "content">
 			<tr>
-			{% for element in table_headings %}
-				<th>{{ element }}<th>
+			{% for heading in table_headings %}
+				<th>{{ heading }}</th>
 			{% endfor %}
 			</tr>
 			{% for row in content %}
