@@ -4,6 +4,7 @@
 
 {% block head %}
 <link rel = "stylesheet" type = "text/css" href = "/static/general/paginator.css/" />
+<link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
 <link rel = "stylesheet" type = "text/css" href = "/static/showdata/table.css/" />
 {% endblock %}
 
@@ -13,6 +14,12 @@
 
 {% block header %}
 	{{ path }}
+	<div class = "filter">
+		<form action = "" method = "GET">
+			{{ form.as_p }}
+			<input type = "submit" name = "submit" value = "确定"/>
+		</form>
+	</div>
 {% endblock %}
 
 {% block content %}

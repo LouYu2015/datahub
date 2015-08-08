@@ -1,11 +1,11 @@
 <!-- Show a page navigation bar -->
-
+<script src = "/static/general/paginator.js/"></script>
 <div class = "pagenav">
 	<ul>
-		<li><a href = "?page=1" title = "第1页">首页</a></li>
+		<li><a href = "javascript:toPage(1)" title = "第1页">首页</a></li>
 		
 		{% if content.has_previous  %}
-			<li><a href = "?page={{ content.previous_page_number }}" title = "第{{ content.previous_page_number }}页">上一页</a></li>
+			<li><a href = "javascript:toPage({{ content.previous_page_number }})" title = "第{{ content.previous_page_number }}页">上一页</a></li>
 		{% else %}
 			<li><span class = "disabled">上一页</span></li>
 		{% endif %}
@@ -14,17 +14,17 @@
 			{% ifequal page_num content.number %}
 				<span class = "current_page">{{ page_num }}</span>
 			{% else %}
-				<li><a href = "?page={{ page_num }}" title = "第{{ page_num }}页">{{ page_num }}</a></li>
+				<li><a href = "javascript:toPage({{ page_num }})" title = "第{{ page_num }}页">{{ page_num }}</a></li>
 			{% endifequal %}
 		{% endfor %}
 		
 		{% if content.has_next %}
-			<li><a href = "?page={{ content.next_page_number }}" title = "第{{ content.next_page_number }}页">下一页</a></li>
+			<li><a href = "javascript:toPage({{ content.next_page_number }})" title = "第{{ content.next_page_number }}页">下一页</a></li>
 		{% else %}
 			<li><span class = "disabled">下一页</span></li>
 		{% endif %}
 		
-		<li><a href = "?page={{ content.paginator.num_pages }}" title = "第{{ content.paginator.num_pages  }}页">尾页</a></li>
+		<li><a href = "javascript:toPage({{ content.paginator.num_pages }})" title = "第{{ content.paginator.num_pages  }}页">尾页</a></li>
 		
 		<li><span class = "summary">共{{ paginator.count }}行，{{ paginator.num_pages }}页</span></li>
 	</ul>

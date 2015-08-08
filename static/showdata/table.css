@@ -12,3 +12,10 @@ table.content th, table.content td
 	
 	padding: 5px;
 }
+
+div.filter
+{
+	float: right;
+	
+	padding: 10px;
+}

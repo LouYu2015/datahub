@@ -1,0 +1,17 @@
+ul.errorlist
+{
+	border: 1px solid red;
+	border-radius: 4px;
+	
+	padding: 3px;
+	background-color: OrangeRed;
+	
+	box-shadow: 3px 3px 3px gray;
+}
+
+ul.errorlist li
+{
+	margin: 2px;
+
+	color: white;
+}
