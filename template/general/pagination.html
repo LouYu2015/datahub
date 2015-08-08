@@ -2,6 +2,8 @@
 <script src = "/static/general/paginator.js/"></script>
 <div class = "pagenav">
 	<ul>
+		<li><span class = "summary">共{{ paginator.count }}行，{{ paginator.num_pages }}页</span></li>
+		
 		<li><a href = "javascript:toPage(1)" title = "第1页">首页</a></li>
 		
 		{% if content.has_previous  %}
@@ -26,6 +28,5 @@
 		
 		<li><a href = "javascript:toPage({{ content.paginator.num_pages }})" title = "第{{ content.paginator.num_pages  }}页">尾页</a></li>
 		
-		<li><span class = "summary">共{{ paginator.count }}行，{{ paginator.num_pages }}页</span></li>
 	</ul>
 </div>

@@ -5,6 +5,8 @@ div.pagenav
 	border: 1px solid Blue;
 	border-radius: 4px;
 	
+	color: white;
+	
 	background-color: SkyBlue;
 	box-shadow: 3px 3px 3px gray;
 }
@@ -15,6 +17,17 @@ div.pagenav li
 	
 	margin: 0px;
 	padding: 0px;
+	
+	text-shadow: 1px 1px gray;
+}
+
+div.pagenav span.summary
+{
+	font-weight: bolder;
+	
+	color: black;
+	
+	text-shadow: None;
 }
 
 div.pagenav span.disabled
@@ -25,6 +38,7 @@ div.pagenav span.disabled
 div.pagenav span.current_page
 {
 	font-weight: bold;
+	color: black;
 }
 
 div.pagenav a
