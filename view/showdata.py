@@ -7,16 +7,19 @@ import csv
 
 class tablePageSettingsForm(forms.Form):
     itemPerPage = forms.ChoiceField(label = "每页行数", choices = [(str(x), str(x)) for x in (10, 20, 50, 100, 200)])
+    haveHeading = forms.BooleanField(label = "有标题行", required = False)
     page = forms.IntegerField(widget=forms.HiddenInput())
 
-def showTablePage(request):
+def showTablePage(request, path):
     '''
     Display a table for a request.
-
+	
+	path: The path of csv file
+	
     Return a httpRespond.
     '''
-    path = r'test\ex2data2.txt'
-    initPara = {'itemPerPage': 20, 'page': 1}
+    initPara = {'itemPerPage': 50, 'haveHeading': False, 'page': 1}
+    cd = initPara
     # Get parameters from query string
     if request.method == 'GET' and 'submit' in request.GET:
         form = tablePageSettingsForm(request.GET)
@@ -31,14 +34,16 @@ def showTablePage(request):
             cd['page'] = int(request.GET.get('page', '1'))
         except ValueError:
             raise Http404()
-    
     # Fetch the file
     csvfile = file(path, 'rb')
     reader = csv.reader(csvfile)
     lines = list(reader)
 
     # Paging
-    paginator = Paginator(lines[1:], cd['itemPerPage'])
+    if cd['haveHeading']:
+        paginator = Paginator(lines[1:], cd['itemPerPage'])
+    else:
+        paginator = Paginator(lines, cd['itemPerPage'])
 
     try:
         content = paginator.page(cd['page'])
@@ -48,13 +53,17 @@ def showTablePage(request):
         content = paginator.page(paginator.num_pages)
 
     # Rend
+    if cd['haveHeading']:
+        heading = list(lines[0])
+    else:
+        heading = []
     respond = render(request, 'showdata/table.html',
                 {'title': '测试标题',
                 'path': path,
                 'page_range': friendlyPageRange(paginator.page_range, content.number),
                 'paginator': paginator,
                 'content': content,
-                'table_headings': list(lines[0]),
+                'table_headings': heading,
                 'form': form})
 
     # Finishing

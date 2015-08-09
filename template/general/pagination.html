@@ -13,11 +13,13 @@
 		{% endif %}
 		
 		{% for page_num in page_range %}
+			<li>
 			{% ifequal page_num content.number %}
 				<span class = "current_page">{{ page_num }}</span>
 			{% else %}
-				<li><a href = "javascript:toPage({{ page_num }})" title = "第{{ page_num }}页">{{ page_num }}</a></li>
+				<a href = "javascript:toPage({{ page_num }})" title = "第{{ page_num }}页">{{ page_num }}</a>
 			{% endifequal %}
+			</li>
 		{% endfor %}
 		
 		{% if content.has_next %}

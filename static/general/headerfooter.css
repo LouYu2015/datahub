@@ -16,14 +16,18 @@ div.header, div.footer, div.content
 
 div.buttons
 {
-	width: auto;
-	display: inline-block;
+	min-height: 50px;
+	
 	padding: 10px;
+	
+	float: left;
 }
 
 div.header
 {
 	border-bottom: 1px solid gray;
+	
+	background-color: snow;
 }
 
 div.header span

@@ -13,6 +13,16 @@ table.content th, table.content td
 	padding: 5px;
 }
 
+table.content tr:nth-child(odd) td
+{
+	background: Lavender;
+}
+
+table.content th
+{
+	background-color: SkyBlue;
+}
+
 div.filter
 {
 	float: right;

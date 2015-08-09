@@ -1,22 +1,23 @@
 div.pagenav
 {
-	width: auto;
 	margin: 20px;
-	border: 1px solid Blue;
+	border: 1px solid SkyBlue;
 	border-radius: 4px;
 	
 	color: white;
 	
-	background-color: SkyBlue;
+	background-color: CornflowerBlue;
 	box-shadow: 3px 3px 3px gray;
 }
 
 div.pagenav li
 {
-	display: inline;
-	
+	display: inline-block;
+	min-width: 25px;
 	margin: 0px;
+	
 	padding: 0px;
+	text-align: center;
 	
 	text-shadow: 1px 1px gray;
 }
@@ -24,8 +25,6 @@ div.pagenav li
 div.pagenav span.summary
 {
 	font-weight: bolder;
-	
-	color: black;
 	
 	text-shadow: None;
 }

@@ -8,4 +8,6 @@ def friendlyPageRange(pageRange, page):
     
     Return a range.
     '''
-    return set(pageRange).intersection(set(range(page - 5, page + 5)))
+    page = max(page, pageRange[0] + 5)
+    page = min(page, pageRange[-1] - 5)
+    return set(pageRange).intersection(set(range(page - 5, page + 6)))

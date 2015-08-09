@@ -13,13 +13,14 @@
 {% endblock %}
 
 {% block header %}
-	{{ path }}
 	<div class = "filter">
 		<form action = "" method = "GET">
 			{{ form.as_p }}
 			<input type = "submit" name = "submit" value = "确定"/>
 		</form>
 	</div>
+
+	<p>{{ path }}</p>
 {% endblock %}
 
 {% block content %}
