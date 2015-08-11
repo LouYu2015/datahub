@@ -33,7 +33,7 @@ def showTablePage(request, path):
         try:
             cd['page'] = int(request.GET.get('page', '1'))
         except ValueError:
-            raise Http404()
+            cd['page'] = 1
     # Fetch the file
     csvfile = file(path, 'rb')
     reader = csv.reader(csvfile)
