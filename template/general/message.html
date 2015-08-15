@@ -2,10 +2,17 @@
 <html>
 	<header>
 		<title>{{ title }}</title>
+		<link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
+		{% if next %}
+		<meta http-equiv="refresh" content="10; {{ next }}"/>
+		{% endif %}
 	</header>
 	<body>
-		<div class = "box">
+		<div class = "colorBox" style = "text-align: center">
 			<p>{{ content }}</p>
+			{% if next %}
+			<p>10秒后将自动跳转到{{ next }}</p>
+			{% endif %}
 		</div>
 	</body>
 </html>

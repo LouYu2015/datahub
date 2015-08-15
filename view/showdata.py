@@ -2,7 +2,8 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django import forms
 from django.http import Http404
-from general import friendlyPageRange
+from view.utility import friendlyPageRange
+from view.general import showMessagePage
 import csv
 
 class tablePageSettingsForm(forms.Form):
@@ -13,11 +14,14 @@ class tablePageSettingsForm(forms.Form):
 def showTablePage(request, path):
     '''
     Display a table for a request.
-	
-	path: The path of csv file
-	
+    
+    path: The path of csv file
+    
     Return a httpRespond.
     '''
+    # Decide whether the user can view the file
+    if not request.user.is_authenticated():
+        return showMessagePage(request, '无法访问', '您没有登录，不能访问这个页面')
     initPara = {'itemPerPage': 50, 'haveHeading': False, 'page': 1}
     cd = initPara
     # Get parameters from query string
@@ -58,7 +62,7 @@ def showTablePage(request, path):
     else:
         heading = []
     respond = render(request, 'showdata/table.html',
-                {'title': '测试标题',
+                {'title': '表格 ' + path,
                 'path': path,
                 'page_range': friendlyPageRange(paginator.page_range, content.number),
                 'paginator': paginator,

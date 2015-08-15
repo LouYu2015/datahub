@@ -1,13 +1,6 @@
 div.pagenav
 {
-	margin: 20px;
-	border: 1px solid SkyBlue;
-	border-radius: 4px;
-	
-	color: white;
-	
-	background-color: CornflowerBlue;
-	box-shadow: 3px 3px 3px gray;
+	padding: 8px;
 }
 
 div.pagenav li

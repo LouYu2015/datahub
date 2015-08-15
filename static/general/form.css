@@ -1,3 +1,15 @@
+
+
+div.box, div.colorBox, ul.errorlist
+{
+	margin: 20px;
+	padding: 30px;
+	border: 1px solid gray;
+	border-radius: 8px;
+
+	box-shadow: 3px 3px 3px gray;
+}
+
 ul.errorlist
 {
 	border: 1px solid red;
@@ -5,8 +17,6 @@ ul.errorlist
 	
 	padding: 3px;
 	background-color: OrangeRed;
-	
-	box-shadow: 3px 3px 3px gray;
 }
 
 ul.errorlist li
@@ -14,4 +24,11 @@ ul.errorlist li
 	margin: 2px;
 
 	color: white;
+}
+
+div.colorBox
+{
+	color: white;
+	background-color: CornflowerBlue;
+	border: 1px solid SkyBlue;
 }

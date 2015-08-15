@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
-	<header>
+	<head>
 		<title>登录</title>
-	</header>
+		<link rel = "stylesheet" type = "text/css" href = "/static/auth/login.css/" />
+		<link rel = "stylesheet" type = "text/css" href = "/static/general/headerfooter.css/" />
+		<link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
+	</head>
 	<body>
-		<div class = "login">
+		<div class = "login box">
 			<form method = "POST">
 				{% csrf_token %}
 				{% if error %}
@@ -25,10 +28,8 @@
 					<input type = "submit" value = "登录" />
 				</p>
 			</form>
-			<form action = "/logout/" method = "POST">
-				{% csrf_token %}
-				<input type = "submit" name = "logout" value = "登出" />
-			</form>
+			{% include "auth/logoutButton.html" %}
 		</div>
+		{% include "general/footer.html" %}
 	</body>
 </html>

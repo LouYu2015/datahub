@@ -4,13 +4,16 @@ from django.core.context_processors import csrf
 from django.http import HttpResponseRedirect, Http404
 from view.general import showMessagePage
 
-def showLogInPage(request):
+def showLogInPage(request, next = '/showtable/'):
     '''
     Show a log-in page.
     If the request contains 'username' and 'password', then login the user.
     
     Return a http respond.
     '''
+    # Decide whether to show a success page
+    if request.method == 'GET' and 'successful' in request.GET:
+        return showMessagePage(request, '成功', '登录成功')
     error = ''
     if request.method == 'POST':
         username = request.POST.get('username', '')
@@ -24,7 +27,7 @@ def showLogInPage(request):
     #assert False
     return render(request, 'auth/login.html', 
                 dict({'error': error,
-                'next': request.GET.get('next', '/login/successful/')
+                'next': request.GET.get('next', '/login/?successful=successful&next='+next)
                 }.items()+csrf(request).items()))
 
 def showLogOutPage(request):
