@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'pagination',
-    'disk',
+    'fileManager',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -109,3 +109,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"),]
+
+# Place to store user's file
+USER_FILE_PATH = 'C:/datahub/user'

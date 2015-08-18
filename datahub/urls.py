@@ -6,4 +6,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', 'view.auth.showLogInPage'),
     url(r'^logout/$', 'view.auth.showLogOutPage'),
+    url(r'^upload/$', 'fileManager.views.showUploadPage'),
 ]
