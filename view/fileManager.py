@@ -31,4 +31,4 @@ def showUploadPage(request):
             return showMessagePage(request, '操作成功', u'您成功上传了文件%s' % os.path.split(path)[-1])
     else:
         form = UserForm()
-    return render_to_response('upload.html',dict({'form':form}.items() + csrf(request).items()))
+    return render_to_response('fileManager/upload.html',dict({'form':form}.items() + csrf(request).items()))
