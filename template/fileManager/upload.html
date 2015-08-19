@@ -6,6 +6,7 @@
     </head>
     <body>
         <div class = "box">
+            <p>当前路径：{{ path }}</p>
             <form method="post" enctype="multipart/form-data" >
                 {% csrf_token %}
                 {{form.as_p}}

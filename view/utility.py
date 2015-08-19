@@ -33,3 +33,13 @@ def saveUploadedFile(file, path):
     with open(path, 'wb+') as destination:
         for chunk in file.chunks():
             destination.write(chunk)
+
+def yieldFile(path, buf_size=262144):
+        file = open(path, "rb")
+        while True:
+            content = file.read(buf_size)
+            if content:
+                yield content
+            else:
+                break
+        file.close()

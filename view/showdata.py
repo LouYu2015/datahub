@@ -11,6 +11,7 @@ class tablePageSettingsForm(forms.Form):
     haveHeading = forms.BooleanField(label = "有标题行", required = False)
     page = forms.IntegerField(widget=forms.HiddenInput())
 
+# Warning: This function won't check whether the user have the authority to access the path, and won't escape the path
 def showTablePage(request, path):
     '''
     Display a table for a request.
@@ -20,8 +21,6 @@ def showTablePage(request, path):
     Return a httpRespond.
     '''
     # Decide whether the user can view the file
-    if not request.user.is_authenticated():
-        return showMessagePage(request, '无法访问', '您没有登录，不能访问这个页面')
     initPara = {'itemPerPage': 50, 'haveHeading': False, 'page': 1}
     cd = initPara
     # Get parameters from query string

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>文件夹 {{ path }}</title>
+		<link rel = "stylesheet" type = "text/css" href = "/static/general/headerfooter.css/" />
+		<link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
+	</head>
+	<body>
+        <div class = "content">
+            <div class = "colorBox">
+                <p>当前目录：
+                {% if path %}
+                    {{ path }}
+                {% else %}
+                    根目录
+                {% endif %}</p>
+                <p><a href = "{{ upload_URL|safe }}" title = "上传">上传文件</a></p>
+            </div>
+            <div class = "box">
+                <ul>
+                    {% if path %}
+                        <li><a href = "../" title = "上一级目录">返回上一级目录</a></li>
+                    {% endif %}
+                    {% for file in files %}
+                        <li><a href = "{{ file.quotedFileName }}/" title = "{{ file.fileName }}">{{ file.fileName }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+		{% include "general/footer.html" %}
+	</body>
+</html>
