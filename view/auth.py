@@ -8,7 +8,7 @@ def showLogInPage(request, next = '/showtable/'):
     '''
     Show a log-in page.
     If the request contains 'username' and 'password', then login the user.
-    
+
     Return a http respond.
     '''
     # Decide whether to show a success page
@@ -25,7 +25,7 @@ def showLogInPage(request, next = '/showtable/'):
         else:
             error = '错误的用户名或密码'
     #assert False
-    return render(request, 'auth/login.html', 
+    return render(request, 'auth/login.html',
                 dict({'error': error,
                 'next': request.GET.get('next', '/login/?successful=successful&next='+next)
                 }.items()+csrf(request).items()))
@@ -33,6 +33,8 @@ def showLogInPage(request, next = '/showtable/'):
 def showLogOutPage(request):
     '''
     Log out a user
+
+    Return a httpRespond.
     '''
     if request.method != 'POST' or not 'logout' in request.POST:
         raise Http404('无效的请求')
