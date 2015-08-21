@@ -35,17 +35,5 @@ div.pagenav span.current_page
 
 div.pagenav a
 {
-	padding: 5px;
-	margin: 1px;
-	text-decoration: none;
-}
-
-div.pagenav a:link, div.pagenav a:visited
-{
-	color: white;
-}
-
-div.pagenav a:hover, div.pagenav a:active
-{
-	color: blue;
+    text-decoration: None;
 }

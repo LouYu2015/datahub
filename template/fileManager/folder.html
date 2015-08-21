@@ -4,27 +4,36 @@
 		<title>文件夹 {{ path }}</title>
 		<link rel = "stylesheet" type = "text/css" href = "/static/general/headerfooter.css/" />
 		<link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
+		<link rel = "stylesheet" type = "text/css" href = "/static/fileManager/folder.css/" />
 	</head>
 	<body>
         <div class = "content">
-            <div class = "colorBox">
+            <div class = "bar colorBox">
                 <p>当前目录：
                 {% if path %}
                     {{ path }}
                 {% else %}
                     根目录
                 {% endif %}</p>
-                <p><a href = "{{ upload_URL|safe }}" title = "上传">上传文件</a></p>
+                <p><a href = "{{ upload_URL|safe }}" title = "上传" target = "_blank">上传文件</a></p>
             </div>
             <div class = "box">
-                <ul>
                     {% if path %}
-                        <li><a href = "../" title = "上一级目录">返回上一级目录</a></li>
+                        <a href = "../" title = "上一级目录">返回上一级目录</a>
                     {% endif %}
+                <table class = "files">
                     {% for file in files %}
-                        <li><a href = "{{ file.quotedFileName }}/" title = "{{ file.fileName }}">{{ file.fileName }}</a></li>
+                        <tr>
+                            <td><a href = "{{ file.quotedFileName }}/" title = "{{ file.fileName }}">{{ file.fileName }}</a></td>
+                            <td class = "buttonWraper"><form action = "{{ file.quotedFileName }}/" method = "GET">
+                                <input class = "danger" type = "submit" name = "delete" value = "删除" />
+                            </form></td>
+                            <td class = "buttonWraper"><form action = "{{ file.quotedFileName }}/" method = "GET">
+                                <input type = "submit" name = "rename" value = "移动" />
+                            </form></td>
+                        </tr>
                     {% endfor %}
-                </ul>
+                </table>
             </div>
         </div>
 		{% include "general/footer.html" %}

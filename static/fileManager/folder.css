@@ -1,0 +1,20 @@
+/* css for folder.html */
+
+table.files
+{
+    margin: 8px;
+    
+    min-width: 500px;
+    
+    border-collapse:collapse;
+}
+
+table.files tr:nth-child(odd)
+{
+	background-color: WhiteSmoke;
+}
+
+table.files td.buttonWraper
+{
+    float: right;
+}

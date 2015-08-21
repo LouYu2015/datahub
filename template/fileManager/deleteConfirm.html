@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>删除 {{ path }}</title>
+		<link rel = "stylesheet" type = "text/css" href = "/static/general/headerfooter.css/" />
+		<link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
+	</head>
+	<body>
+        <div class = "content">
+            <div class = "box">
+                <p>你确定要删除"{{ path }}"吗？</p>
+                <form method = "POST">
+                    {% csrf_token %}
+                    <input type = "submit" name = "delete" value = "确定" />
+                    <input type = "submit" value = "取消"/>
+                </form>
+            </div>
+        </div>
+		{% include "general/footer.html" %}
+	</body>
+</html>

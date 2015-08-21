@@ -4,14 +4,14 @@
 		<title>{{ title }}</title>
 		<link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
 		{% if next %}
-		<meta http-equiv="refresh" content="10; {{ next }}"/>
+		<meta http-equiv="refresh" content="5; {{ next }}"/>
 		{% endif %}
 	</header>
 	<body>
 		<div class = "colorBox" style = "text-align: center">
 			<p>{{ content }}</p>
 			{% if next %}
-			<p>10秒后将自动跳转到{{ next }}</p>
+			<p>5秒后将自动跳转到"<a href = "{{ next }}">{{ next }}</a>"</p>
 			{% endif %}
 		</div>
 	</body>

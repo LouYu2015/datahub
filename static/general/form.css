@@ -14,7 +14,7 @@ ul.errorlist
 {
 	border: 1px solid red;
 	border-radius: 4px;
-	
+
 	padding: 3px;
 	background-color: OrangeRed;
 }
@@ -28,7 +28,67 @@ ul.errorlist li
 
 div.colorBox
 {
+    text-shadow: 1px 1px gray;
 	color: white;
 	background-color: CornflowerBlue;
 	border: 1px solid SkyBlue;
+}
+
+div.colorBox a
+{
+	padding: 5px;
+	margin: 1px;
+	text-decoration: none;
+    text-decoration: underline;
+
+    text-shadow: 1px 1px 1px gray;
+}
+
+div.colorBox a:link, div.colorBox a:visited
+{
+	color: white;
+}
+
+div.colorBox a:hover, div.colorBox a:active
+{
+	color: PaleTurquoise;
+}
+
+div.bar
+{
+    padding: 8px;
+}
+
+div.bar p
+{
+    margin: 8px;
+}
+
+input[type="button"], input[type="submit"], input[type="reset"]
+{
+    margin: 4px 6px;
+    padding: 3px 6px;
+
+    background-color: WhiteSmoke;
+    border: 1px solid gray;
+    border-radius: 2px;
+
+    box-shadow: 1px 1px 1px gray;
+}
+
+input.danger
+{
+    background-color: Tomato;
+    border: 1px solid red;
+    color: white;
+}
+
+a:link, a:visited
+{
+	color: blue;
+}
+
+a:hover, a:active
+{
+	color: DeepSkyBlue;
 }

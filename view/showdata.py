@@ -11,12 +11,13 @@ class tablePageSettingsForm(forms.Form):
     haveHeading = forms.BooleanField(label = "有标题行", required = False)
     page = forms.IntegerField(widget=forms.HiddenInput())
 
-# Warning: This function won't check whether the user have the authority to access the path, and won't escape the path
-def showTablePage(request, path):
+def showTablePage(request, fullPath, path):
     '''
+    Warning: This function won't check whether the user have the authority to access the path, won't escape the path, and won't check whether the file exists.
     Display a table for a request.
     
-    path: The path of csv file
+    fullPath: The path in the server's file system to be shown.
+    path: The path to be shown.
     
     Return a httpRespond.
     '''
@@ -38,7 +39,7 @@ def showTablePage(request, path):
         except ValueError:
             cd['page'] = 1
     # Fetch the file
-    csvfile = file(path, 'rb')
+    csvfile = file(fullPath, 'rb')
     reader = csv.reader(csvfile)
     lines = list(reader)
 
@@ -61,7 +62,7 @@ def showTablePage(request, path):
     else:
         heading = []
     respond = render(request, 'showdata/table.html',
-                {'title': '表格 ' + path,
+                {'title': u'表格 ' + path,
                 'path': path,
                 'page_range': friendlyPageRange(paginator.page_range, content.number),
                 'paginator': paginator,

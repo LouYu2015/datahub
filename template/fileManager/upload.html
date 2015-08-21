@@ -6,7 +6,7 @@
     </head>
     <body>
         <div class = "box">
-            <p>当前路径：{{ path }}</p>
+            <p>如果文件夹不存在，将会创建新文件夹</p>
             <form method="post" enctype="multipart/form-data" >
                 {% csrf_token %}
                 {{form.as_p}}

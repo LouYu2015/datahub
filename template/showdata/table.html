@@ -9,7 +9,13 @@
 {% endblock %}
 
 {% block buttons %}
-	<input type = "button" value = "删除" />
+    <form action = "../" method = "GET">
+        <input type = "submit" name = "" value = "返回" /><br />
+    </form>
+    <form method = "GET">
+        <input type = "submit" name = "rename" value = "移动" /><br />
+        <input class = "danger" type = "submit" name = "delete" value = "删除" /><br />
+    </form>
 {% endblock %}
 
 {% block header %}
