@@ -30,9 +30,9 @@ div.header
 	background-color: snow;
 }
 
-div.header span
+div.header p
 {
-	margin: 10px;
+	margin: 10px 20px;
 }
 
 div.footer

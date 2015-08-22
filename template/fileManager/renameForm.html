@@ -1,23 +1,26 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>移动 {{ path }}</title>
-		<link rel = "stylesheet" type = "text/css" href = "/static/general/headerfooter.css/" />
-		<link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
-	</head>
-	<body>
-        <div class = "content">
-            <div class = "box">
-                <p>移动"{{ path }}"</p>
-                <p>若目标路径和原始路径在同一文件夹下则为重命名。文件夹不存在则会被创建。</p>
-                <form method = "POST">
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type = "submit" name = "rename" value = "确定" />
-                    <input type = "submit" name = "" value = "取消" />
-                </form>
-            </div>
+{% extends "fileManager/basic.html" %}
+
+{% block head %}
+    <title>移动 {{ path }}</title>
+    <link rel = "stylesheet" type = "text/css" href = "/static/general/headerfooter.css/" />
+    <link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
+{% endblock %}
+
+{% block header %}
+    <h1>移动文件</h1>
+    <p>{{ path }}</p>
+{% endblock %}
+
+{% block content %}
+    <div class = "content">
+        <div class = "box">
+            <p>若目标路径和原始路径在同一文件夹下则为重命名。文件夹不存在则会被创建。</p>
+            <form method = "POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type = "submit" name = "rename" value = "确定" />
+                <input type = "submit" name = "" value = "取消" />
+            </form>
         </div>
-		{% include "general/footer.html" %}
-	</body>
-</html>
+    </div>
+{% endblock %}

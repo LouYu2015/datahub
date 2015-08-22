@@ -17,7 +17,7 @@ class UploadForm(forms.Form):
     file = forms.FileField(label = "文件")
 
 class RenameForm(forms.Form):
-    path = forms.CharField(label = "移动至：", max_length = 2048, required = False)
+    path = forms.CharField(label = "移动至", max_length = 2048, required = False)
 
 # TODO: Restrict the space that a user can occupy.
 def showUploadPage(request, username, path):
@@ -48,7 +48,7 @@ def showUploadPage(request, username, path):
             return showMessagePage(request, '操作成功', u'您成功上传了文件"%s"' % os.path.basename(fullPath), next = './')
     else:
         form = UploadForm(initial = {'path': path})
-    return render_to_response('fileManager/upload.html',
+    return render(request, 'fileManager/upload.html',
         dict({'form':form,
               'path': path}.items() + csrf(request).items()))
 
