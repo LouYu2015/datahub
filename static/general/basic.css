@@ -41,3 +41,8 @@ div.footer
 	
 	text-align: center;
 }
+
+div.logoutButton
+{
+    float: right;
+}

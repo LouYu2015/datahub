@@ -1,41 +1,52 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>文件夹 {{ path }}</title>
-		<link rel = "stylesheet" type = "text/css" href = "/static/general/headerfooter.css/" />
-		<link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
-		<link rel = "stylesheet" type = "text/css" href = "/static/fileManager/folder.css/" />
-	</head>
-	<body>
-        <div class = "content">
-            <div class = "bar colorBox">
-                <p>当前目录：
-                {% if path %}
-                    {{ path }}
-                {% else %}
-                    根目录
-                {% endif %}</p>
-                <p><a href = "{{ upload_URL|safe }}" title = "上传" target = "_blank">上传文件</a></p>
-            </div>
-            <div class = "box">
-                    {% if path %}
-                        <a href = "../" title = "上一级目录">返回上一级目录</a>
-                    {% endif %}
-                <table class = "files">
-                    {% for file in files %}
-                        <tr>
-                            <td><a href = "{{ file.quotedFileName }}/" title = "{{ file.fileName }}">{{ file.fileName }}</a></td>
-                            <td class = "buttonWraper"><form action = "{{ file.quotedFileName }}/" method = "GET">
-                                <input class = "danger" type = "submit" name = "delete" value = "删除" />
-                            </form></td>
-                            <td class = "buttonWraper"><form action = "{{ file.quotedFileName }}/" method = "GET">
-                                <input type = "submit" name = "rename" value = "移动" />
-                            </form></td>
-                        </tr>
-                    {% endfor %}
-                </table>
-            </div>
-        </div>
-		{% include "general/footer.html" %}
-	</body>
-</html>
+{% extends "fileManager/basic.html" %}
+
+{% block head %}
+    <title>文件夹 {{ foldername }}</title>
+    <link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
+    <link rel = "stylesheet" type = "text/css" href = "/static/fileManager/folder.css/" />
+{% endblock %}
+
+{% block buttons %}
+    {% if path %}
+    <form action = "../" method = "GET">
+        <input type = "submit" name = "" value = "返回" /><br />
+    </form>
+    {% endif %}
+    <form method = "GET">
+        <input type = "submit" name = "rename" value = "移动" /><br />
+        <input class = "danger" type = "submit" name = "delete" value = "删除" /><br />
+    </form>
+{% endblock %}
+
+{% block header %}
+    <p>
+    当前目录：
+    {% if path %}
+        {{ path }}
+    {% else %}
+        根目录
+    {% endif %}
+    </p>
+    <p><a href = "{{ upload_URL|safe }}" title = "上传" target = "_blank">上传文件</a></p>
+{% endblock %}
+
+{% block content %}
+    <div class = "box">
+            {% if path %}
+                <a href = "../" title = "上一级目录">返回上一级目录</a>
+            {% endif %}
+        <table class = "files">
+            {% for file in files %}
+                <tr title = "{{ file.fileName }}">
+                    <td><a href = "{{ file.quotedFileName }}/">{{ file.fileName }}</a></td>
+                    <td class = "buttonWraper"><form action = "{{ file.quotedFileName }}/" method = "GET">
+                        <input class = "danger" type = "submit" name = "delete" value = "删除" />
+                    </form></td>
+                    <td class = "buttonWraper"><form action = "{{ file.quotedFileName }}/" method = "GET">
+                        <input type = "submit" name = "rename" value = "移动" />
+                    </form></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}

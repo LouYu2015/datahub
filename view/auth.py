@@ -13,7 +13,9 @@ def showLogInPage(request, next = None):
     '''
     # Decide whether to show a success page
     if request.method == 'GET' and 'successful' in request.GET:
-        return showMessagePage(request, '成功', '登录成功')
+        if not next:
+            next = '/view/%s/' % request.user.username
+        return showMessagePage(request, '成功', '登录成功', next = next)
 
     error = ''
 
@@ -27,11 +29,10 @@ def showLogInPage(request, next = None):
         else:
             error = '错误的用户名或密码'
 
-    if not next:
-        next = '/view/%s/' % request.user.username
+    
     return render(request, 'auth/login.html',
                 dict({'error': error,
-                'next': request.GET.get('next', '/login/?successful=successful&next='+next)
+                'next': request.GET.get('next', '/login/?successful=successful')
                 }.items()+csrf(request).items()))
 
 def showLogOutPage(request):
@@ -45,4 +46,4 @@ def showLogOutPage(request):
     if not request.user.is_authenticated():
         return showMessagePage(request, '无法登出', '您尚未登录')
     auth.logout(request)
-    return showMessagePage(request, '成功', '您已成功登出')
+    return showMessagePage(request, '成功', '您已成功登出', next = '/login/')

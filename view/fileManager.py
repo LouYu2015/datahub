@@ -118,6 +118,7 @@ def showFolderPage(request, username, fullPath, path):
     '''
     files = [{'fileName': file, 'quotedFileName': urllib.quote(file.encode('utf-8'))} for file in os.listdir(fullPath)]
     return render(request, 'fileManager/folder.html', {'path': path,
+                                                       'foldername': os.path.basename(fullPath),
                                                        'files': files,
                                                        'upload_URL': '/upload/%s/%s' % (username, path,),})
 

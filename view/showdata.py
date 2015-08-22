@@ -5,6 +5,7 @@ from django.http import Http404
 from view.utility import friendlyPageRange
 from view.general import showMessagePage
 import csv
+import os
 
 class tablePageSettingsForm(forms.Form):
     itemPerPage = forms.ChoiceField(label = "每页行数", choices = [(str(x), str(x)) for x in (10, 20, 50, 100, 200)])
@@ -62,8 +63,8 @@ def showTablePage(request, fullPath, path):
     else:
         heading = []
     respond = render(request, 'showdata/table.html',
-                {'title': u'表格 ' + path,
-                'path': path,
+                {'path': path,
+                'filename': os.path.basename(fullPath),
                 'page_range': friendlyPageRange(paginator.page_range, content.number),
                 'paginator': paginator,
                 'content': content,

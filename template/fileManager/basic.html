@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{{ title }}</title>
-		<link rel = "stylesheet" type = "text/css" href = "/static/general/headerfooter.css/" />
+		<link rel = "stylesheet" type = "text/css" href = "/static/general/basic.css/" />
 		{% block head %}{% endblock %}
 	</head>
 
 	<body>
 		<div class = "header">
+            <div class = "logoutButton">
+                {% include "auth/logoutButton.html" %}
+            </div>
 			<div class = "buttons">
 				{% block buttons %}{% endblock %}
 			</div>

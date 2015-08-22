@@ -1,8 +1,9 @@
 <!-- Show a table -->
 
-{% extends "showdata/basic.html" %}
+{% extends "fileManager/basic.html" %}
 
 {% block head %}
+<title>表格 {{ filename }}</title>
 <link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
 <link rel = "stylesheet" type = "text/css" href = "/static/general/paginator.css/" />
 <link rel = "stylesheet" type = "text/css" href = "/static/showdata/table.css/" />
@@ -19,19 +20,12 @@
 {% endblock %}
 
 {% block header %}
-	<div class = "filter">
-		<form action = "" method = "GET">
-			{{ form.as_p }}
-			<input type = "submit" name = "submit" value = "确定"/>
-		</form>
-	</div>
-
 	<p>{{ path }}</p>
 {% endblock %}
 
 {% block content %}
 	{% include "general/pagination.html" %}
-	<div>
+	<div class = "tableWraper">
 		<table class = "content">
 			<tr>
 			{% for heading in table_headings %}
@@ -46,6 +40,12 @@
 				</tr>
 			{% endfor %}
 		</table>
+	</div>
+	<div class = "filter box">
+		<form action = "" method = "GET">
+			{{ form.as_p }}
+			<input type = "submit" name = "submit" value = "确定"/>
+		</form>
 	</div>
 	{% include "general/pagination.html" %}
 {% endblock %}

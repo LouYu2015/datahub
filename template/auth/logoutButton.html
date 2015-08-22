@@ -1,6 +1,8 @@
 <!-- A button that is used to logout a user -->
 
+
 <form class = "logout" action = "/logout/" method = "POST">
+    你好，{{ request.user.username }}
 	{% csrf_token %}
 	<input type = "submit" name = "logout" value = "登出" />
 </form>

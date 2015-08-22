@@ -1,5 +1,22 @@
-table.content
+
+div.tableWraper
 {
+    display: inline-block;
+    vertical-align:text-top;
+}
+
+div.filter
+{
+    display: inline-block;
+    vertical-align:text-top;
+    
+    min-width: 200px;
+	
+	padding: 10px;
+}
+
+table.content
+{   
 	border-collapse:collapse;
 	margin: 20px;
 	
@@ -21,11 +38,4 @@ table.content tr:nth-child(odd) td
 table.content th
 {
 	background-color: SkyBlue;
-}
-
-div.filter
-{
-	float: right;
-	
-	padding: 10px;
 }
