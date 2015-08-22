@@ -9,18 +9,14 @@
 <link rel = "stylesheet" type = "text/css" href = "/static/showdata/table.css/" />
 {% endblock %}
 
-{% block buttons %}
-    <form action = "../" method = "GET">
-        <input type = "submit" name = "" value = "返回" /><br />
-    </form>
-    <form method = "GET">
-        <input type = "submit" name = "rename" value = "移动" /><br />
-        <input class = "danger" type = "submit" name = "delete" value = "删除" /><br />
-    </form>
-{% endblock %}
-
 {% block header %}
 	<p>{{ path }}</p>
+{% endblock %}
+
+{% block otherButtons %}
+    <form action = "{{ downloadURL }}" method = "GET">
+        <input type = "submit" name = "" value = "下载" /><br />
+    </form>
 {% endblock %}
 
 {% block content %}
@@ -41,6 +37,7 @@
 			{% endfor %}
 		</table>
 	</div>
+
 	<div class = "filter box">
 		<form action = "" method = "GET">
 			{{ form.as_p }}

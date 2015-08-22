@@ -98,10 +98,11 @@ def showFileOrFolder(request, username, path):
 
     if os.path.isfile(fullPath):
         ext = os.path.splitext(fullPath)[-1]
+        downloadURL = u'/download/%s/%s' % (username, path)
         if ext in viewForType.keys():
-            return viewForType[ext](request, fullPath, path)
+            return viewForType[ext](request, fullPath, path, downloadURL)
         else:
-            return showDonloadPage(request, fullPath)
+            return showDonloadPage(request, username, fullPath, path, downloadURL)
 
     return showMessagePage(request, '错误', '路径不存在')
 
@@ -122,15 +123,25 @@ def showFolderPage(request, username, fullPath, path):
                                                        'files': files,
                                                        'upload_URL': '/upload/%s/%s' % (username, path,),})
 
-def showDonloadPage(request, fullPath):
+def showDonloadPage(request, username, fullPath, path, downloadURL):
     '''
     Warning: This function won't check whether the user have the authority to access the path, won't escape the path, and won't check whether the file exists.
-    Let a user donload the file in the path.
+    Show a file that let the user download the file.
 
     fullPath: The path in the server's file system to be donloaded.
 
     Return a httpRespond.
     '''
+    return render(request, 'fileManager/download.html', 
+    {'path': path,
+     'downloadURL': downloadURL,
+    })
+
+def downloadFile(request, username, path):
+    if not request.user.is_authenticated() or not request.user.username == username:
+        return showMessagePage(request, '错误', '您没有权限')
+
+    fullPath = os.path.join(settings.USER_FILE_PATH, escapePath(username), escapePath(path))
     respond = HttpResponse(yieldFile(fullPath))
     respond['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(fullPath).encode('utf-8')
     return respond

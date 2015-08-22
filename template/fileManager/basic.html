@@ -7,17 +7,30 @@
 
 	<body>
 		<div class = "header">
+			<div class = "buttons">
+				{% block buttons %}
+                    <form action = "../" method = "GET">
+                        <input type = "submit" name = "" value = "返回" /><br />
+                    </form>
+                    <form method = "GET">
+                        <input type = "submit" name = "rename" value = "移动" /><br />
+                        <input class = "danger" type = "submit" name = "delete" value = "删除" /><br />
+                    </form>
+                {% endblock %}
+                {% block otherButtons %}{% endblock %}
+			</div>
+
             <div class = "logoutButton">
                 {% include "auth/logoutButton.html" %}
             </div>
-			<div class = "buttons">
-				{% block buttons %}{% endblock %}
-			</div>
+
 			{% block header %}{% endblock %}
 		</div>
+
 		<div class = "content">
 			{% block content %}{% endblock %}
 		</div>
+
 		{% include "general/footer.html" %}
 	</body>
 </html>

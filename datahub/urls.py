@@ -7,4 +7,5 @@ urlpatterns = [
     url(r'^logout/$', 'view.auth.showLogOutPage'),
     url(r'^upload/(?P<username>[^/]+)/(?P<path>.*)$', 'view.fileManager.showUploadPage'),
     url(r'^view/(?P<username>[^/]+)/(?P<path>.*)$', 'view.fileManager.showFileOrFolder'),
+    url(r'^download/(?P<username>[^/]+)/(?P<path>.*)$', 'view.fileManager.downloadFile'),
 ]

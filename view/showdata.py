@@ -12,7 +12,7 @@ class tablePageSettingsForm(forms.Form):
     haveHeading = forms.BooleanField(label = "有标题行", required = False)
     page = forms.IntegerField(widget=forms.HiddenInput())
 
-def showTablePage(request, fullPath, path):
+def showTablePage(request, fullPath, path, downloadURL):
     '''
     Warning: This function won't check whether the user have the authority to access the path, won't escape the path, and won't check whether the file exists.
     Display a table for a request.
@@ -65,6 +65,7 @@ def showTablePage(request, fullPath, path):
     respond = render(request, 'showdata/table.html',
                 {'path': path,
                 'filename': os.path.basename(fullPath),
+                'downloadURL': downloadURL,
                 'page_range': friendlyPageRange(paginator.page_range, content.number),
                 'paginator': paginator,
                 'content': content,

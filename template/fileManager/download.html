@@ -1,0 +1,18 @@
+{% extends "fileManager/basic.html" %}
+
+{% block head %}
+    <title>下载 {{ path }}</title>
+    <link rel = "stylesheet" type = "text/css" href = "/static/general/headerfooter.css/" />
+    <link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
+{% endblock %}
+
+{% block header %}
+    <p>{{ path }}</p>
+{% endblock %}
+
+{% block content %}
+    <div class = "box">
+        <p>网站暂不支持这种格式的显示，请点击下面的链接下载后查看：</p>
+        <p><a href = "{{ downloadURL }}">{{ downloadURL }}</a></p>
+    </div>
+{% endblock %}

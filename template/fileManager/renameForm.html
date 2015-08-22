@@ -12,15 +12,13 @@
 {% endblock %}
 
 {% block content %}
-    <div class = "content">
-        <div class = "box">
-            <p>若目标路径和原始路径在同一文件夹下则为重命名。文件夹不存在则会被创建。</p>
-            <form method = "POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type = "submit" name = "rename" value = "确定" />
-                <input type = "submit" name = "" value = "取消" />
-            </form>
-        </div>
+    <div class = "box">
+        <p>若目标路径和原始路径在同一文件夹下则为重命名。文件夹不存在则会被创建。</p>
+        <form method = "POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type = "submit" name = "rename" value = "确定" />
+            <input type = "submit" name = "" value = "取消" />
+        </form>
     </div>
 {% endblock %}

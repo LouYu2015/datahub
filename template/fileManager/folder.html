@@ -6,18 +6,6 @@
     <link rel = "stylesheet" type = "text/css" href = "/static/fileManager/folder.css/" />
 {% endblock %}
 
-{% block buttons %}
-    {% if path %}
-    <form action = "../" method = "GET">
-        <input type = "submit" name = "" value = "返回" /><br />
-    </form>
-    <form method = "GET">
-        <input type = "submit" name = "rename" value = "移动" /><br />
-        <input class = "danger" type = "submit" name = "delete" value = "删除" /><br />
-    </form>
-    {% endif %}
-{% endblock %}
-
 {% block header %}
     <p>
     当前目录：
@@ -43,7 +31,7 @@
                         <input class = "danger" type = "submit" name = "delete" value = "删除" />
                     </form></td>
                     <td class = "buttonWraper"><form action = "{{ file.quotedFileName }}/" method = "GET">
-                        <input type = "submit" name = "rename" value = "移动" />
+                        <input type = "submit" name = "rename" value = "移动/命名" />
                     </form></td>
                 </tr>
             {% endfor %}
