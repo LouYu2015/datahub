@@ -20,9 +20,6 @@
 
 {% block content %}
     <div class = "box">
-            {% if path %}
-                <a href = "../" title = "上一级目录">返回上一级目录</a>
-            {% endif %}
         <table class = "files">
             {% for file in files %}
                 <tr title = "{{ file.fileName }}">
@@ -34,6 +31,8 @@
                         <input type = "submit" name = "rename" value = "移动/命名" />
                     </form></td>
                 </tr>
+            {% empty %}
+                <p>文件夹为空</p>
             {% endfor %}
         </table>
     </div>

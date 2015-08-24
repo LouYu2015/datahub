@@ -1,0 +1,28 @@
+<!-- Show a table -->
+
+{% extends "fileManager/basic.html" %}
+
+{% block head %}
+<title>文本 {{ filename }}</title>
+<link rel = "stylesheet" type = "text/css" href = "/static/general/form.css/" />
+<link rel = "stylesheet" type = "text/css" href = "/static/general/paginator.css/" />
+<link rel = "stylesheet" type = "text/css" href = "/static/showdata/table.css/" />
+{% endblock %}
+
+{% block header %}
+	<p>{{ path }}</p>
+{% endblock %}
+
+{% block otherButtons %}
+    <form action = "{{ downloadURL }}" method = "GET">
+        <input type = "submit" name = "" value = "下载" /><br />
+    </form>
+{% endblock %}
+
+{% block content %}
+    <div class = "box">
+    {% for line in content %}
+        <p>{{ line }}<p>
+    {% endfor %}
+    </div>
+{% endblock %}

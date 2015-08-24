@@ -25,6 +25,7 @@ def showTablePage(request, fullPath, path, downloadURL):
     # Decide whether the user can view the file
     initPara = {'itemPerPage': 50, 'haveHeading': False, 'page': 1}
     cd = initPara
+
     # Get parameters from query string
     if request.method == 'GET' and 'submit' in request.GET:
         form = tablePageSettingsForm(request.GET)
@@ -75,4 +76,24 @@ def showTablePage(request, fullPath, path, downloadURL):
     # Finishing
     csvfile.close()
 
+    return respond
+
+def showTextFile(request, fullPath, path, downloadURL):
+    '''
+    Warning: This function won't check whether the user have the authority to access the path, won't escape the path, and won't check whether the file exists.
+    Display a text file.
+    
+    fullPath: The path in the server's file system to be shown.
+    path: The path to be shown.
+    
+    Return a httpRespond.
+    '''
+    f = file(fullPath, 'rb')
+    respond = render(request, 'showdata/textFile.html',
+                {'path': path,
+                'filename': os.path.basename(fullPath),
+                'downloadURL': downloadURL,
+                'content': f.readlines(),
+                })
+    f.close()
     return respond

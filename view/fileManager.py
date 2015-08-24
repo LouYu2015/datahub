@@ -6,15 +6,18 @@ from django.core.context_processors import csrf
 from django.conf import settings
 from view.general import showMessagePage
 from view.utility import escapePath, saveUploadedFile, yieldFile
-from view.showdata import showTablePage
+from view.showdata import showTablePage, showTextFile
 import os
+import shutil
 import urllib
 
-viewForType = {'.csv': showTablePage,}
+viewForType = {'.csv': showTablePage,
+               '.txt': showTextFile,}
 
 class UploadForm(forms.Form):
     path = forms.CharField(label = "上传至", max_length = 2048, required = False)
     file = forms.FileField(label = "文件")
+    override = forms.BooleanField(label = "是否覆盖同名文件", required = False)
 
 class RenameForm(forms.Form):
     path = forms.CharField(label = "移动至", max_length = 2048, required = False)
@@ -31,6 +34,7 @@ def showUploadPage(request, username, path):
     '''
     if not request.user.is_authenticated() or not request.user.username == username:
         return showMessagePage(request, '错误', '您没有权限')
+
     if request.method == "POST":
         form = UploadForm(request.POST,request.FILES)
         if form.is_valid():
@@ -41,13 +45,14 @@ def showUploadPage(request, username, path):
             fullPath = os.path.join(settings.USER_FILE_PATH, escapePath(username), escapePath(path), os.path.split(cd['file'].name)[-1])
             if not os.path.exists(os.path.dirname(fullPath)):
                 os.makedirs(os.path.dirname(fullPath))
-            if os.path.exists(fullPath):# TODO: Ask the user to decide whether to override the file
-                os.remove(fullPath)
-            saveUploadedFile(cd['file'], fullPath)
-
-            return showMessagePage(request, '操作成功', u'您成功上传了文件"%s"' % os.path.basename(fullPath), next = './')
-    else:
-        form = UploadForm(initial = {'path': path})
+            if cd['override'] and os.path.exists(fullPath):
+                    os.remove(fullPath)
+            if not os.path.exists(fullPath):
+                saveUploadedFile(cd['file'], fullPath)
+                return showMessagePage(request, '操作成功', u'您成功上传了文件"%s"' % os.path.basename(fullPath), next = './')
+            else:
+                return showMessagePage(request, '同名文件', '发现同名文件。请选择覆盖文件以继续上传')
+    form = UploadForm(initial = dict({'path': path}.items() + request.POST.items()))
     return render(request, 'fileManager/upload.html',
         dict({'form':form,
               'path': path}.items() + csrf(request).items()))
@@ -77,7 +82,10 @@ def showFileOrFolder(request, username, path):
 
         if request.method == 'POST': # Do the action
             if 'delete' in request.POST:
-                os.remove(fullPath)
+                if os.path.isdir(fullPath):
+                    shutil.rmtree(fullPath)
+                else:
+                    os.remove(fullPath)
                 return showMessagePage(request, '操作成功', u'您已删除"%s"' % path, next = '../')
             elif 'rename' in request.POST:
                 form = RenameForm(request.POST)
@@ -87,7 +95,7 @@ def showFileOrFolder(request, username, path):
                     if not os.path.exists(os.path.dirname(destPath)):
                         os.makedirs(os.path.dirname(destPath))
                     os.rename(fullPath, destPath)
-                    return showMessagePage(request, '操作成功', u'您已移动"%s"至"%s"' % (path, destPath), next = '../')
+                    return showMessagePage(request, '操作成功', u'您已移动"%s"至"%s"' % (path, cd['path']), next = '../')
                 else:
                     return render(request, 'fileManager/renameForm.html', dict({'path': path,
                                                                             'form': RenameForm(initial = {'path' : path}),
